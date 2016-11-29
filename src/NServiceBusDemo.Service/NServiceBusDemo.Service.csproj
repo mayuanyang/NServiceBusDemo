@@ -61,6 +61,8 @@
   <ItemGroup>
     <Compile Include="DemoService.cs" />
     <Compile Include="Handlers\PrintTextCommandHandler.cs" />
+    <Compile Include="Pipeline\LogMessage.cs" />
+    <Compile Include="Pipeline\UnitOfWork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

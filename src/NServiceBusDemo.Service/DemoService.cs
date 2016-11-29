@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Pipeline;
+using NServiceBusDemo.Service.Pipeline;
 
 namespace NServiceBusDemo.Service
 {
@@ -12,6 +15,8 @@ namespace NServiceBusDemo.Service
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
+            endpointConfiguration.Pipeline.Register(new UnitOfWork(), "Unit of work");
+            endpointConfiguration.Pipeline.Register(new LogMessage(), "Log message");
             var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
             transport.ConnectionString("host=localhost");
 
